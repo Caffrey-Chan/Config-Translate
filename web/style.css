@@ -1,0 +1,74 @@
+:root {
+  color-scheme: light;
+  --ink: #14273a;
+  --muted: #4a6073;
+  --line: #d4dee7;
+  --surface: #fff;
+  --background: #f3f6f9;
+  --accent: #006157;
+  --accent-dark: #004b44;
+  --accent-soft: #e9f5f2;
+  --error: #9c2b26;
+  font-family: "Inter", "Noto Sans CJK SC", "Microsoft YaHei", system-ui, sans-serif;
+  color: var(--ink);
+  background: var(--background);
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; }
+main { width: min(100% - 2rem, 58rem); margin: 0 auto; padding: 3rem 0 3.5rem; }
+.page-header { padding: 0 0 1.45rem; border-bottom: 3px solid var(--accent); margin-bottom: 1.25rem; }
+h1, h2, p { margin: 0; }
+h1 { font-size: clamp(2rem, 6vw, 3.05rem); line-height: 1.15; letter-spacing: -.045em; }
+.arrow { color: var(--accent); padding: 0 .12em; }
+.page-header p { margin-top: .45rem; color: var(--muted); font-size: 1.05rem; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: .85rem; padding: clamp(1rem, 3vw, 1.6rem); margin-bottom: 1rem; }
+.section-heading { margin-bottom: 1.1rem; }
+h2 { font-size: 1.21rem; }
+.section-heading p, .zone-panel p { margin-top: .4rem; color: var(--muted); line-height: 1.55; font-size: .93rem; }
+.file-label { display: block; font-weight: 650; margin-bottom: .45rem; }
+input, button { font: inherit; }
+input[type=file] { max-width: 100%; color: var(--muted); }
+input::file-selector-button, button {
+  padding: .58rem .9rem; border: 1px solid var(--accent); border-radius: .46rem;
+  color: white; background: var(--accent); cursor: pointer; font: inherit; font-weight: 650;
+}
+input::file-selector-button { margin-right: .65rem; }
+input::file-selector-button:hover, button:not(:disabled):hover { background: var(--accent-dark); color: white; }
+button:disabled { cursor: wait; opacity: .65; }
+button.secondary { background: white; color: var(--accent); }
+input[type=text] {
+  width: 100%; padding: .5rem .65rem; border: 1px solid #a7b9c9; border-radius: .4rem;
+  color: var(--ink); background: white; font-family: ui-monospace, monospace;
+}
+input[type=text]:invalid { border-color: var(--error); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.mapping-toolbar, .actions { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1rem; }
+.mapping-toolbar { justify-content: space-between; margin-bottom: .6rem; }
+.summary { color: var(--accent-dark); background: var(--accent-soft); border-radius: .4rem; padding: .28rem .55rem; font-size: .88rem; }
+.check { display: inline-flex; gap: .4rem; align-items: center; color: var(--muted); font-size: .89rem; }
+input[type=checkbox] { accent-color: var(--accent); }
+table { width: 100%; table-layout: fixed; border-collapse: collapse; }
+thead { background: var(--background); }
+th, td { text-align: left; padding: .56rem .65rem; border-bottom: 1px solid var(--line); }
+thead th { color: var(--muted); font-size: .85rem; }
+tbody th { font-weight: 550; overflow-wrap: anywhere; }
+.source-name, .detail { display: block; }
+.source-name { font-family: ui-monospace, monospace; font-size: .92rem; }
+.detail { font-size: .79rem; margin-top: .25rem; color: var(--muted); }
+details { margin-top: 1rem; }
+summary { cursor: pointer; font-weight: 650; color: var(--accent-dark); }
+.zone-panel table { margin-top: .6rem; }
+.actions { margin-top: 1rem; }
+.status { color: var(--muted); margin-top: .55rem; line-height: 1.5; }
+.actions .status { margin: 0; }
+.status.error { color: var(--error); }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr)); gap: .55rem; margin: 0; }
+.stats div { display: flex; flex-direction: column-reverse; gap: .15rem; padding: .6rem .72rem; background: var(--background); border-radius: .45rem; }
+.stats dt { font-size: .84rem; color: var(--muted); }
+.stats dd { font-size: 1.45rem; font-weight: 650; margin: 0; }
+pre { padding: .85rem; overflow: auto; max-height: 28rem; border-radius: .45rem; background: #122439; color: #eff8ff; }
+@media (max-width: 36rem) {
+  main { width: calc(100% - 1rem); padding-top: 1.5rem; }
+  th, td { padding-inline: .39rem; }
+}

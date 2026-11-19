@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>H3C → FortiGate 配置转换</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <main>
+    <header class="page-header">
+      <h1><span>H3C</span> <span class="arrow" aria-hidden="true">→</span> <span>FortiGate</span></h1>
+      <p>配置转换</p>
+    </header>
+
+    <section class="panel" aria-labelledby="source-heading">
+      <div class="section-heading">
+        <h2 id="source-heading">源配置</h2>
+        <p>选择 H3C Comware 7 导出的配置文件，最多 16 MiB。</p>
+      </div>
+      <label class="file-label" for="source-file">H3C 配置文件</label>
+      <input id="source-file" type="file" accept=".cfg,.conf,.txt">
+      <p id="file-status" class="status" role="status" hidden></p>
+    </section>
+
+    <form id="mapping-form" hidden>
+      <section class="panel" aria-labelledby="interface-heading">
+        <div class="section-heading">
+          <h2 id="interface-heading">接口映射</h2>
+          <p>输入 FortiGate 目标 VDOM 中的实际三层接口名。可只填写本次需要转换的接口。</p>
+        </div>
+        <div class="mapping-toolbar">
+          <span id="mapping-summary" class="summary" role="status"></span>
+          <label id="show-all-control" class="check" hidden>
+            <input id="show-all" type="checkbox">
+            显示其余接口
+          </label>
+        </div>
+        <table id="interface-table">
+          <thead>
+            <tr><th scope="col">H3C 源接口</th><th scope="col">FortiGate 目标接口</th></tr>
+          </thead>
+          <tbody id="interface-rows"></tbody>
+        </table>
+        <p id="no-interfaces" class="status" hidden>配置文件中未识别出接口定义。</p>
+        <details id="zone-panel" class="zone-panel">
+          <summary>安全区域映射（可选）</summary>
+          <p>填写目标区域名后可生成对应的安全策略。区域应已在目标 VDOM 建立。</p>
+          <table>
+            <thead>
+              <tr><th scope="col">H3C 源区域</th><th scope="col">FortiGate 目标区域</th></tr>
+            </thead>
+            <tbody id="zone-rows"></tbody>
+          </table>
+        </details>
+        <div class="actions">
+          <button type="submit" id="convert">生成转换草稿</button>
+          <p id="convert-status" class="status" role="status" hidden></p>
+        </div>
+      </section>
+    </form>
+
+    <section class="panel" id="result" aria-labelledby="result-heading" hidden>
+      <div class="section-heading">
+        <h2 id="result-heading">转换结果</h2>
+        <p>生成的静态路由和安全策略默认停用。NAT 规则与待复核项见 JSON 报告。</p>
+      </div>
+      <dl id="result-stats" class="stats"></dl>
+      <div class="actions">
+        <button type="button" id="download-cli">下载 CLI 草稿</button>
+        <button type="button" class="secondary" id="download-report">下载 JSON 报告</button>
+      </div>
+      <details id="preview-panel">
+        <summary>预览 CLI</summary>
+        <pre id="preview" tabindex="0"></pre>
+      </details>
+    </section>
+  </main>
+</body>
+</html>
